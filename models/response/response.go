@@ -41,6 +41,6 @@ type ScreeningData struct {
 	StartTime time.Time `json:"start_time"`
 }
 
-type AllUser struct {
-	DataUser interface{} `json:"data_user"`
+type UserNotFound struct {
+	Message string `json:"message"`
 }

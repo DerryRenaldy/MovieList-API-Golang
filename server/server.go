@@ -31,7 +31,9 @@ func (s *Server) Start() {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/api/user", s.controller.CreateUser).Methods(http.MethodPost)
+	r.HandleFunc("/api/users", s.controller.GetAllUser).Methods(http.MethodGet)
+	r.HandleFunc("/api/user", s.controller.GetUserById).Methods(http.MethodGet)
 
-	err := http.ListenAndServe(":8010", r)
+	err := http.ListenAndServe(":9000", r)
 	helper.PrintError(err)
 }

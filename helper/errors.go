@@ -13,5 +13,6 @@ func PrintError(err error) {
 	if err != nil {
 		log.Error(err)
 		fmt.Println(err)
+		return
 	}
 }

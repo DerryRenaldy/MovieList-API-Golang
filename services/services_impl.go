@@ -15,9 +15,11 @@ func (s *Services) CreateUser(ctx context.Context, req *request.InsertUsers) (*r
 	helper.PrintError(err)
 	req.Password = pass
 
+	// Run Query From Repository
 	res, err := s.Repository.InsertUser(ctx, req)
 	helper.PrintError(err)
 
+	// Insert time to insert response struct and replace password into req and res struct with hashed password
 	res.CreatedAt = time.Now()
 	res.Password = pass
 	req.Password = pass
@@ -26,13 +28,17 @@ func (s *Services) CreateUser(ctx context.Context, req *request.InsertUsers) (*r
 }
 
 func (s *Services) GetAllUser(ctx context.Context) ([]response.Users, error) {
-	//TODO implement me
-	panic("implement me")
+	res, err := s.Repository.GetAllUser(ctx)
+	helper.PrintError(err)
+
+	return res, nil
 }
 
 func (s *Services) GetUserById(ctx context.Context, id int) (*response.Users, error) {
-	//TODO implement me
-	panic("implement me")
+	res, err := s.Repository.GetUserById(ctx, id)
+	helper.PrintError(err)
+
+	return res, nil
 }
 
 func (s *Services) GetMovieList(ctx context.Context) ([]response.Movie, error) {
